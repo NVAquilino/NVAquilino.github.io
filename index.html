@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nicholas Aquilino — Data & Analytics Leader</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1a2e4a;
+      --blue:   #2563eb;
+      --sky:    #3b82f6;
+      --accent: #0ea5e9;
+      --light:  #f0f7ff;
+      --gray:   #64748b;
+      --text:   #1e293b;
+      --white:  #ffffff;
+      --border: #e2e8f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(26,46,74,0.97);
+      backdrop-filter: blur(8px);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-brand {
+      color: white; font-weight: 700; font-size: 1rem; letter-spacing: .5px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: #94a3b8; text-decoration: none; font-size: .85rem;
+      font-weight: 500; letter-spacing: .3px; transition: color .2s;
+    }
+    .nav-links a:hover { color: white; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 50%, #0f2847 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(37,99,235,.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(14,165,233,.1) 0%, transparent 50%);
+    }
+    .hero-content { position: relative; max-width: 800px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(37,99,235,.2); border: 1px solid rgba(59,130,246,.3);
+      color: #93c5fd; padding: .4rem 1.2rem; border-radius: 100px;
+      font-size: .8rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800; color: white; line-height: 1.1;
+      margin-bottom: 1rem; letter-spacing: -1px;
+    }
+    .hero h1 span { color: #60a5fa; }
+    .hero-sub {
+      font-size: 1.15rem; color: #94a3b8; margin-bottom: .75rem; font-weight: 400;
+    }
+    .hero-tagline {
+      font-size: 1rem; color: #64748b; margin-bottom: 2.5rem; font-style: italic;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem;
+      margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      display: block; font-size: 2rem; font-weight: 800; color: #60a5fa; line-height: 1;
+    }
+    .stat-label { font-size: .75rem; color: #64748b; text-transform: uppercase; letter-spacing: .5px; }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: .75rem 1.75rem; border-radius: 8px; font-weight: 600;
+      font-size: .9rem; text-decoration: none; transition: all .2s; cursor: pointer;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-primary {
+      background: var(--blue); color: white; border: 2px solid var(--blue);
+    }
+    .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: white; border: 2px solid rgba(255,255,255,.3);
+    }
+    .btn-outline:hover { border-color: white; transform: translateY(-1px); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;
+      color: var(--navy); margin-bottom: .75rem; letter-spacing: -0.5px;
+    }
+    .section-sub { font-size: 1rem; color: var(--gray); max-width: 600px; margin-bottom: 3rem; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--light); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text p { color: #475569; margin-bottom: 1rem; font-size: .95rem; line-height: 1.8; }
+    .about-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .about-card {
+      background: white; border-radius: 12px; padding: 1.25rem 1.5rem;
+      border-left: 4px solid var(--blue); box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .about-card-title { font-weight: 700; font-size: .85rem; color: var(--navy); margin-bottom: .25rem; }
+    .about-card-text { font-size: .82rem; color: var(--gray); }
+
+    /* ── PROJECTS ── */
+    .projects { background: white; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .project-card {
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.08); }
+    .project-header {
+      background: linear-gradient(135deg, var(--navy), #1e3a5f);
+      padding: 1.5rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .project-num {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 800; color: #93c5fd; flex-shrink: 0;
+    }
+    .project-header-text { flex: 1; }
+    .project-title { font-size: 1rem; font-weight: 700; color: white; line-height: 1.3; }
+    .project-company { font-size: .78rem; color: #94a3b8; margin-top: .2rem; }
+    .project-body { padding: 1.5rem; }
+    .project-desc { font-size: .875rem; color: #475569; line-height: 1.7; margin-bottom: 1.25rem; }
+    .project-metrics { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .metric-chip {
+      background: var(--light); border: 1px solid #bfdbfe;
+      border-radius: 100px; padding: .3rem .9rem;
+      font-size: .75rem; font-weight: 700; color: var(--blue);
+    }
+    .project-tags { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .tag {
+      background: #f8fafc; border: 1px solid var(--border);
+      border-radius: 6px; padding: .2rem .6rem;
+      font-size: .72rem; color: var(--gray); font-weight: 500;
+    }
+
+    /* ── SKILLS ── */
+    .skills { background: var(--light); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .skill-card {
+      background: white; border-radius: 14px; padding: 1.5rem;
+      border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    }
+    .skill-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--light); display: flex; align-items: center;
+      justify-content: center; font-size: 1.3rem; margin-bottom: 1rem;
+    }
+    .skill-title { font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: .75rem; }
+    .skill-list { list-style: none; }
+    .skill-list li {
+      font-size: .8rem; color: var(--gray); padding: .25rem 0;
+      border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: .5rem;
+    }
+    .skill-list li:last-child { border-bottom: none; }
+    .skill-list li::before { content: '›'; color: var(--blue); font-weight: 700; }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    .experience { background: white; }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--blue), #bfdbfe);
+    }
+    .timeline-item { position: relative; margin-bottom: 2.5rem; padding-left: 1.5rem; }
+    .timeline-dot {
+      position: absolute; left: -2.4rem; top: .3rem;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--blue); border: 3px solid var(--light);
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+    .timeline-period {
+      font-size: .75rem; font-weight: 600; color: var(--blue);
+      text-transform: uppercase; letter-spacing: .5px; margin-bottom: .3rem;
+    }
+    .timeline-role { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+    .timeline-company { font-size: .875rem; color: var(--gray); margin-bottom: .75rem; }
+    .timeline-desc { font-size: .875rem; color: #475569; line-height: 1.7; }
+    .timeline-highlights { margin-top: .75rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+    .highlight-chip {
+      background: var(--light); border-radius: 6px; padding: .25rem .7rem;
+      font-size: .75rem; font-weight: 600; color: var(--navy);
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: linear-gradient(135deg, var(--navy), #1e3a5f);
+      text-align: center; padding: 5rem 2rem;
+    }
+    .contact .section-label { color: #93c5fd; }
+    .contact .section-title { color: white; }
+    .contact .section-sub { color: #94a3b8; margin: 0 auto 2.5rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      color: white; text-decoration: none; padding: .75rem 1.5rem;
+      border-radius: 10px; font-size: .875rem; font-weight: 500;
+      transition: all .2s;
+    }
+    .contact-link:hover {
+      background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.3);
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f1e2e; color: #475569;
+      text-align: center; padding: 1.5rem;
+      font-size: .8rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid, .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Nicholas Aquilino</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Data & Analytics Leader</div>
+    <h1>Nicholas <span>Aquilino</span></h1>
+    <p class="hero-sub">FVP, Head of Data Analytics & Workflow Automation</p>
+    <p class="hero-tagline">Building analytics functions that executives rely on — not just report decks that sit in inboxes.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">17K+</span>
+        <span class="stat-label">Hours Saved Annually</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">250+</span>
+        <span class="stat-label">Processes Analyzed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">$20B</span>
+        <span class="stat-label">Institution Scale</span>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Builder. Strategist. Translator.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm an analytics and data enablement leader with 15+ years driving enterprise-wide data strategy, AI programs, and operational intelligence across highly regulated industries.</p>
+        <p>I specialize in building analytics functions from the ground up — not inheriting them and maintaining them, but creating the operating models, standards, infrastructure, and culture that make analytics sustainable at scale.</p>
+        <p>My career has been defined by one consistent pattern: joining organizations where data is underutilized, building the foundation that makes it trustworthy, and then connecting that foundation directly to the decisions that matter most to executives and boards.</p>
+        <p>I'm now focused on applying that experience in healthcare people analytics — where workforce decisions have a direct line to patient outcomes.</p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card">
+          <div class="about-card-title">🏗️ Builder</div>
+          <div class="about-card-text">Built enterprise analytics functions from scratch at two financial institutions — operating models, standards, KPI frameworks, and tech stacks included.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-title">🔄 Translator</div>
+          <div class="about-card-text">Turn complex data into decisions. Presented strategy and results in every forum — from IT town halls to the Board of Directors.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-title">🤝 Collaborator</div>
+          <div class="about-card-text">Partnered with CEOs, CROs, CHROs, CTOs, and CFOs on multi-year data and AI roadmaps. Analytics only matters when the business acts on it.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-title">⚖️ Accountable</div>
+          <div class="about-card-text">15 years in regulated financial environments. Data security, governance, and compliance aren't constraints — they're part of the operating model.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Key Initiatives & Documented Results</h2>
+    <p class="section-sub">Selected projects that demonstrate the intersection of analytics leadership, technical execution, and business impact.</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-num">01</div>
+          <div class="project-header-text">
+            <div class="project-title">Enterprise Analytics Function — Built from Scratch</div>
+            <div class="project-company">Apple Bank · FVP, Head of Data Analytics & Workflow Automation</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Joined Apple Bank when analytics maturity was at early-stage adoption. Built the entire function from the ground up — operating model, standards, procedures, enterprise KPI framework, metadata standards, data dictionaries, and a modernized tech stack. Scaled a unified team of BI developers, automation engineers, analysts, and governance professionals into a single high-leverage function.</p>
+          <div class="project-metrics">
+            <span class="metric-chip">1,000+ Annual Requests</span>
+            <span class="metric-chip">100+ Concurrent Initiatives</span>
+            <span class="metric-chip">$20B Institution</span>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">ServiceNow</span>
+            <span class="tag">Data Governance</span>
+            <span class="tag">Operating Model Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-num">02</div>
+          <div class="project-header-text">
+            <div class="project-title">Automation & AI Program — C-Suite & Board Rollout</div>
+            <div class="project-company">Apple Bank · VP, Business Intelligence Manager</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Designed and pitched a full enterprise automation and AI strategy to the CEO, CRO, CFO, CTO, CISO, and Board of Directors. Chaired the process automation working group, wrote its charter, and led the bank's first automation deployments. Implemented responsible AI frameworks for fairness, transparency, and regulatory compliance. Enabled Claude Code and Microsoft Copilot capabilities for developers.</p>
+          <div class="project-metrics">
+            <span class="metric-chip">17,000+ Hours Saved</span>
+            <span class="metric-chip">6-Figure Annual Savings</span>
+            <span class="metric-chip">80% Workload Reduction</span>
+          </div>
+          <div class="project-tags">
+            <span class="tag">UiPath</span>
+            <span class="tag">Power Automate</span>
+            <span class="tag">Copilot Studio</span>
+            <span class="tag">AI Strategy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-num">03</div>
+          <div class="project-header-text">
+            <div class="project-title">Master Process & Workforce Dashboard</div>
+            <div class="project-company">Apple Bank · VP, Business Intelligence Manager</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Partnered with HR and 10+ department heads to build a comprehensive master process dashboard — the primary decision tool for automation prioritization and workforce optimization. Captured process hours, FTE headcount, capacity metrics, budget data, and custom efficiency ratings across 250+ business processes. Built a Workday API integration to feed HR data into dashboards and reporting pipelines. Analysis directly informed C-suite staffing and operational decisions.</p>
+          <div class="project-metrics">
+            <span class="metric-chip">250+ Processes Analyzed</span>
+            <span class="metric-chip">Workday API Integration</span>
+            <span class="metric-chip">C-Suite Decision Impact</span>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Workday</span>
+            <span class="tag">People Analytics</span>
+            <span class="tag">Capacity Planning</span>
+            <span class="tag">Power BI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-num">04</div>
+          <div class="project-header-text">
+            <div class="project-title">Unified Workforce Analytics Dashboard</div>
+            <div class="project-company">People's United Bank · Senior BI Developer</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Designed and published a unified workforce analytics dashboard that served as a single point of entry for HR, leadership, and operational teams across the organization. Secured access to HR data sources, aggregated and validated data for workforce analytics and compliance reporting, and built views serving multiple audiences and use cases across employee segments. Supervised compliance reporting across SOX, NAIC, AML, BSA, and OFAC frameworks.</p>
+          <div class="project-metrics">
+            <span class="metric-chip">Single HR Data Entry Point</span>
+            <span class="metric-chip">Multi-Segment Analytics</span>
+            <span class="metric-chip">Compliance Reporting</span>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Workforce Analytics</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">SOX / AML / BSA</span>
+            <span class="tag">HR Partnership</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="container">
+    <div class="section-label">Technical Skills</div>
+    <h2 class="section-title">Tools & Expertise</h2>
+    <p class="section-sub">15+ years of hands-on technical experience across the full analytics stack.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-title">BI & Visualization</div>
+        <ul class="skill-list">
+          <li>Microsoft Power BI</li>
+          <li>Tableau</li>
+          <li>Qlik Sense</li>
+          <li>SAP Business Objects</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-title">Data & Databases</div>
+        <ul class="skill-list">
+          <li>SQL Server</li>
+          <li>Snowflake</li>
+          <li>Oracle</li>
+          <li>Python</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-title">Automation & AI</div>
+        <ul class="skill-list">
+          <li>UiPath (RPA)</li>
+          <li>Power Automate</li>
+          <li>Microsoft Copilot Studio</li>
+          <li>Power Apps</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">☁️</div>
+        <div class="skill-title">Cloud & Big Data</div>
+        <ul class="skill-list">
+          <li>Databricks</li>
+          <li>Cloudera / Hadoop</li>
+          <li>CI/CD Pipelines</li>
+          <li>API Integration</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">👥</div>
+        <div class="skill-title">HRIS & People Analytics</div>
+        <ul class="skill-list">
+          <li>Workday API</li>
+          <li>Workforce Dashboards</li>
+          <li>Headcount & FTE Modeling</li>
+          <li>Capacity Planning</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🏛️</div>
+        <div class="skill-title">Governance & Operations</div>
+        <ul class="skill-list">
+          <li>ServiceNow & Monday.com</li>
+          <li>Data Catalog & Dictionaries</li>
+          <li>Metadata Standards</li>
+          <li>Change Management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Career Timeline</h2>
+    <p class="section-sub">15+ years in regulated financial services, building analytics capabilities at scale.</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Jan 2026 – Present</div>
+        <div class="timeline-role">FVP, Head of Data Analytics & Workflow Automation</div>
+        <div class="timeline-company">Apple Bank · New York City</div>
+        <div class="timeline-desc">Oversee Analytics, Data Governance, and Data Quality teams. Define enterprise-wide AI strategy in partnership with Audit, Model Risk Management, and Information Security. Scale AI and automation enterprise-wide, implement responsible AI frameworks, and mature data governance into BAU operations.</div>
+        <div class="timeline-highlights">
+          <span class="highlight-chip">Enterprise AI Strategy</span>
+          <span class="highlight-chip">Data Governance</span>
+          <span class="highlight-chip">3 Teams</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Sep 2021 – Jan 2026</div>
+        <div class="timeline-role">VP, Business Intelligence Manager</div>
+        <div class="timeline-company">Apple Bank · New York City</div>
+        <div class="timeline-desc">Defined and executed multi-year Data & AI strategies for a $20B financial institution. Built and scaled the enterprise analytics operating model from scratch. Chaired process automation working group. Presented in every forum from IT town halls to the Board of Directors. Deployed the bank's first automations, saving 17,000+ hours and over six figures annually.</div>
+        <div class="timeline-highlights">
+          <span class="highlight-chip">17,000+ Hours Saved</span>
+          <span class="highlight-chip">Board Presentations</span>
+          <span class="highlight-chip">$20B Scale</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Mar 2016 – Sep 2021</div>
+        <div class="timeline-role">Senior Business Intelligence Developer</div>
+        <div class="timeline-company">People's United Bank · Bridgeport, CT</div>
+        <div class="timeline-desc">Designed and published a unified workforce analytics dashboard. Partnered with cross-functional leaders to translate business questions into actionable insights. Supervised compliance reporting across SOX, NAIC, AML, BSA, and OFAC. Built governed semantic layers with consistent metric definitions across the organization.</div>
+        <div class="timeline-highlights">
+          <span class="highlight-chip">Workforce Analytics</span>
+          <span class="highlight-chip">Compliance Reporting</span>
+          <span class="highlight-chip">Semantic Layer Design</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">May 2011 – Mar 2016</div>
+        <div class="timeline-role">Business Intelligence Developer</div>
+        <div class="timeline-company">People's United Bank · Bridgeport, CT</div>
+        <div class="timeline-desc">Built and maintained hundreds of production reports across deposits, loans, sales, and operations. Developed deep banking domain expertise and analytics knowledge in a highly regulated environment.</div>
+        <div class="timeline-highlights">
+          <span class="highlight-chip">Production Reporting</span>
+          <span class="highlight-chip">Banking Domain</span>
+          <span class="highlight-chip">Regulated Environment</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's Connect</h2>
+    <p class="section-sub">Open to conversations about People Analytics, enterprise data leadership, and analytics strategy roles.</p>
+    <div class="contact-links">
+      <a href="mailto:aquilino.nicholas@gmail.com" class="contact-link">
+        ✉️ aquilino.nicholas@gmail.com
+      </a>
+      <a href="tel:2037274237" class="contact-link">
+        📞 (203) 727-4237
+      </a>
+      <a href="https://github.com/NVAquilino" target="_blank" class="contact-link">
+        💻 github.com/NVAquilino
+      </a>
+      <a href="https://linkedin.com/in/nvaquilino" target="_blank" class="contact-link">
+        🔗 LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Nicholas Aquilino · Mahwah, New Jersey · Built with GitHub Pages</p>
+</footer>
+
+</body>
+</html>
